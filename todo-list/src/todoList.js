@@ -1,28 +1,19 @@
-import React, { useState } from 'react';
 
-const TodoList = ({ list, remove }) => {
-  const [taskStatus, setTaskStatus] = useState(Array(list.length).fill('not-done'));
+const TodoList = (props) => {
 
-  const toggleTaskStatus = (index) => {
-    const updatedStatus = [...taskStatus];
-    updatedStatus[index] = updatedStatus[index] === 'not-done' ? 'done' : 'not-done';
-    setTaskStatus(updatedStatus);
-  };
-
-  if (list.length > 0) {
+  if (props.list.length) {
     return (
-      <ul className="todo-list">
-        {list.map((entry, index) => (
-          <div className="todo" key={index}>
+      <ul className="todo-list" >
+        {props.list.map((item) => (
+          <div className="todo" key={item.id}>
             <li
-              className={taskStatus[index]}
-              key={index}
-              onClick={() => toggleTaskStatus(index)}
+              className={item.status}
+              onClick={() => props.onToggle(item)}
             >
-              {entry}
+              {item.name}
             </li>
 
-            <button className="delete-button" onClick={() => remove(entry)}>
+            <button className="delete-button" onClick={() => props.onRemove(item)}>
               Delete
             </button>
           </div>
