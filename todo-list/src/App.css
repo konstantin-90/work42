@@ -44,6 +44,14 @@ h1 {
   align-items: flex-start;
 }
 
+.not-done {
+  background-color: red;
+}
+
+.done {
+  background-color: green;
+}
+
 input {
   width: 450px;
   padding: 0.8em;
